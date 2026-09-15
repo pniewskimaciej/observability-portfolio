@@ -22,3 +22,7 @@ Monitor key Applications and infrastructure metrics and provide an operational v
 - SPL
 - JSON
 - REST API
+
+### My Contribution
+
+I designed the dashboard structure, defined the relevant metrics and queries, and created visualizations to help technical teams quickly identify anomalies and investigate service-related issues.
