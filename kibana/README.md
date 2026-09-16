@@ -1,27 +1,29 @@
-# Elasticsearch / Logstash / Kibana – HTTP & HTTPS Traffic Analytics
+# HTTP/HTTPS Traffic Analytics with Elasticsearch, Logstash & Kibana
 
 ## Overview
 
-This use case demonstrates an end-to-end pipeline for analyzing HTTP and HTTPS traffic using data generated from a customer-provided PCAP file.
-The PCAP was replayed through NETSCOUT probes to produce network traffic data, which was then processed, enriched and indexed for analysis in Elasticsearch.
+An end-to-end network traffic analytics solution built to analyze **HTTP and HTTPS traffic** from a customer-provided PCAP.
 
-## Data Pipeline
+The solution uses NETSCOUT probes to process the traffic, Logstash to enrich the resulting data, Elasticsearch for data storage and analysis, and Kibana for visualization.
 
+---
+
+## Data Flow
+
+```text
 Customer PCAP
      │
      ▼
 NETSCOUT Probes
      │
      ▼
-Network Traffic Data
+Traffic Data
      │
      ▼
 Logstash
      │
-     ├── ASN enrichment – Client IP
-     ├── AS Path enrichment – Client IP
-     ├── ASN enrichment – Server IP
-     └── AS Path enrichment – Server IP
+     ├── Client IP → ASN + AS Path
+     └── Server IP → ASN + AS Path
      │
      ▼
 Elasticsearch
@@ -30,29 +32,26 @@ Elasticsearch
 Kibana
      │
      ▼
-Dashboards & Visualizations
+Analytics & Dashboards
 ```
 
-## Objective
+---
 
-Create an analytical view of HTTP and HTTPS traffic that combines application-level information with network and Internet routing data.
-The goal was to allow technical teams to understand **what applications and URLs were generating traffic, where the traffic was coming from and going to, and how it was distributed across networks and autonomous systems.**
+## Dashboard
 
-## Data Enrichment
+![Kibana HTTP/HTTPS Traffic Analytics](./kibana-http-https-traffic-analysis.png)
 
-A key part of the solution was enriching the traffic data with Internet routing information.
-Using Logstash, I enriched both **client and server IP addresses** with:
+> **Note:** The dashboard screenshot has been anonymized and contains no customer-sensitive or confidential information.
 
-* ASN number
-* AS Path
+---
 
-This allowed traffic to be analyzed not only by IP address, but also by the associated Autonomous System and routing path.
+## Use Case
 
-## Kibana Dashboards
+The objective was to create a detailed view of HTTP/HTTPS traffic and correlate **application-level information with network and Internet routing data**.
 
-The enriched data was loaded into Elasticsearch and used to create Kibana visualizations covering:
+The dashboard allows traffic to be analyzed by:
 
-* Application traffic
+* Applications
 * URLs
 * SNI / Server Name Indication
 * Traffic volume
@@ -60,40 +59,65 @@ The enriched data was loaded into Elasticsearch and used to create Kibana visual
 * Client AS Path
 * Server ASN
 * Server AS Path
-* Traffic distribution and trends
 
-This provided the ability to correlate application and URL activity with the underlying network and Internet infrastructure.
+This makes it possible to investigate **which applications and URLs generate traffic and how that traffic is distributed across networks and Autonomous Systems**.
+
+---
+
+## Data Enrichment
+
+One of the key elements of the solution was enrichment of both **client and server IP addresses**.
+
+Using Logstash, I added:
+
+| IP        | Enrichment    |
+| --------- | ------------- |
+| Client IP | ASN + AS Path |
+| Server IP | ASN + AS Path |
+
+This transformed the raw traffic data into a more useful network intelligence dataset, allowing traffic patterns to be analyzed at both the **IP level and Autonomous System level**.
+
+---
 
 ## My Contribution
 
-I designed and implemented the complete data analysis workflow, including:
+I designed the complete workflow from traffic capture to visualization, including:
 
-* Processing a customer-provided PCAP through NETSCOUT probes
-* Defining the required data and enrichment workflow
-* Designing Logstash processing and enrichment
-* Mapping client and server IP addresses to ASN and AS Path
-* Loading the enriched data into Elasticsearch
-* Designing Kibana visualizations and dashboards
-* Defining KPIs and analytical views for HTTP/HTTPS traffic
-* Correlating application-level and network-level information
+* Processing the customer PCAP through NETSCOUT probes
+* Defining the required traffic data
+* Designing the Logstash enrichment workflow
+* Enriching client and server IPs with ASN and AS Path
+* Loading the processed data into Elasticsearch
+* Designing Kibana visualizations
+* Defining relevant KPIs and analytical dimensions
+* Creating dashboards for application, URL, SNI and traffic analysis
+
+---
 
 ## Technologies
 
-**Data Collection:**
-NETSCOUT Probes · PCAP
+**Data Collection**
 
-**Data Processing:**
-Logstash
+`PCAP` · `NETSCOUT Probes`
 
-**Data Storage & Search:**
-Elasticsearch
+**Data Processing**
 
-**Visualization & Analytics:**
-Kibana
+`Logstash`
 
-**Data:**
-HTTP · HTTPS · SNI · IP · ASN · AS Path
+**Data Storage & Search**
+
+`Elasticsearch`
+
+**Visualization**
+
+`Kibana`
+
+**Data**
+
+`HTTP` · `HTTPS` · `SNI` · `IP` · `ASN` · `AS Path`
+
+---
 
 ## Skills Demonstrated
 
-**Network Traffic Analysis · Data Engineering · Logstash Pipelines · Elasticsearch · Kibana · Data Enrichment · Network Intelligence · Data Visualization · Telecom Analytics**
+**Network Traffic Analysis** · **Data Enrichment** · **Logstash Pipelines** · **Elasticsearch** · **Kibana** · **Network Intelligence** · **Data Visualization** · **Technical Solution Design**
