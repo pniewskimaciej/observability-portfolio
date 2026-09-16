@@ -4,33 +4,35 @@
 
 An end-to-end observability solution for monitoring DNS and LDAP services, combining infrastructure health, service-level KPIs, logs, application traces and geographic analysis.
 
-Test data collected and processed by NETSCOUT probes was stored in Kafka and streamed into Datadog through a Logstash processing pipeline.
+The solution used **two complementary data collection paths**:
+
+* **Datadog Agent** for server health metrics, logs and application traces
+* **Logstash** for processing and forwarding NETSCOUT probing data from Kafka to Datadog
 
 ---
 
-## Data Pipeline
+## Observability Architecture
 
 ```text
-NETSCOUT Probes
-      │
-      ▼
-Processed Test Data
-      │
-      ▼
-Kafka Topic
-      │
-      ▼
-Logstash
-      │
-      ├── GeoIP enrichment
-      ├── Timestamp transformation
-      └── Data processing
-      │
-      ▼
-Datadog
-      │
-      ▼
-Dashboards · Logs · Traces
+                         ┌──────────────────────────┐
+                         │        Datadog           │
+                         │                          │
+                         │ Metrics · Logs · Traces  │
+                         │ Dashboards & Analytics   │
+                         └────────────┬─────────────┘
+                                      │
+                    ┌─────────────────┴─────────────────┐
+                    │                                   │
+             Datadog Agent                         Logstash
+                    │                                   │
+          ┌─────────┼─────────┐                         │
+          │         │         │                         │
+       Health     Server   Application          Kafka Topic
+       Metrics     Logs       Traces                  │
+                                                       │
+                                               NETSCOUT Probes
+                                                       │
+                                              Probing / Test Data
 ```
 
 ---
@@ -51,7 +53,9 @@ The dashboard is divided into three main sections.
 
 ### 1. Infrastructure Health
 
-Provides an overview of the underlying DNS and LDAP server health, including:
+Server health information was collected using the **Datadog Agent**.
+
+The dashboard provides an overview of the underlying DNS and LDAP server health, including:
 
 * RAM utilization
 * Disk utilization
@@ -59,11 +63,13 @@ Provides an overview of the underlying DNS and LDAP server health, including:
 * Network-related KPIs
 * Server health indicators
 
-This section provides the infrastructure context required when investigating service degradation.
+This provides infrastructure context when investigating service degradation.
 
 ### 2. DNS & LDAP Service KPIs
 
-Focuses on the actual performance and availability of the services:
+NETSCOUT probing data was collected from test transactions and processed through the **Kafka → Logstash → Datadog** pipeline.
+
+The dashboard provides service-level KPIs including:
 
 * Response time
 * Failure rate
@@ -76,7 +82,9 @@ This allows technical teams to identify degraded services and determine which cl
 
 ### 3. Logs, Traces & Geographic Analysis
 
-Provides deeper troubleshooting capabilities through:
+**Datadog Agent** was used to collect server logs and application traces.
+
+The dashboard combines this information with the NETSCOUT probing data to provide deeper troubleshooting capabilities, including:
 
 * Server logs
 * Application traces
@@ -88,35 +96,46 @@ The geographic view helps correlate service failures with the location of affect
 
 ---
 
-## Logstash Processing
+## Data Collection & Processing
 
-Logstash was used as the integration and processing layer between Kafka and Datadog.
+### Datadog Agent
 
-As part of the pipeline, I addressed several data-processing requirements:
+The Datadog Agent was deployed on the monitored servers and used for:
 
-### GeoIP Enrichment
+* Infrastructure health metrics
+* Server logs
+* Application traces
 
-I enabled GeoIP enrichment for **server IP addresses**, allowing the data to be analyzed geographically in Datadog.
+This provided the infrastructure and application observability layer.
 
-### Timestamp Transformation
+### NETSCOUT Probes → Kafka → Logstash → Datadog
+
+NETSCOUT probes generated test/probing data that was stored in a Kafka topic.
+
+Logstash was used to subscribe to the Kafka topic, process the data and forward it to Datadog.
+
+As part of the Logstash processing pipeline, I implemented several data transformations and enrichments.
+
+#### GeoIP Enrichment
+
+I enabled GeoIP enrichment for **server IP addresses**, allowing probing data to be analyzed geographically in Datadog.
+
+#### Timestamp Transformation
 
 The source data did not use the required timestamp format by default. I implemented timestamp transformation in Logstash to convert the timestamps into **ISO 8601 format** before sending the data to Datadog.
-
-### Kafka Integration
-
-Logstash subscribed to the relevant Kafka topic containing test data collected and processed by NETSCOUT probes and forwarded the processed data to Datadog.
 
 ---
 
 ## My Contribution
 
-I designed and implemented the monitoring solution across the data pipeline and observability layer, including:
+I designed and implemented the monitoring solution across the data collection, processing and observability layers, including:
 
-* Consuming test data from Kafka using Logstash
+* Integrating NETSCOUT probing data with Kafka and Logstash
 * Troubleshooting and resolving data-processing issues
 * Implementing GeoIP enrichment
 * Transforming timestamps into ISO 8601 format
-* Forwarding processed data to Datadog
+* Forwarding processed NETSCOUT data to Datadog
+* Working with Datadog Agent for metrics, logs and traces
 * Designing the DNS and LDAP monitoring dashboard
 * Defining infrastructure and service-level KPIs
 * Creating views for logs and application traces
@@ -129,7 +148,7 @@ I designed and implemented the monitoring solution across the data pipeline and 
 
 **Data Collection**
 
-`NETSCOUT Probes`
+`NETSCOUT Probes` · `Datadog Agent`
 
 **Data Streaming**
 
@@ -159,4 +178,4 @@ I designed and implemented the monitoring solution across the data pipeline and 
 
 ## Skills Demonstrated
 
-**Observability · Data Pipelines · Kafka · Logstash · Datadog · Infrastructure Monitoring · Service Monitoring · Log Analysis · Application Tracing · GeoIP Enrichment · Troubleshooting · Dashboard Design**
+**Observability · Data Pipelines · Kafka · Logstash · Datadog · Datadog Agent · Infrastructure Monitoring · Service Monitoring · Log Analysis · Application Tracing · GeoIP Enrichment · Troubleshooting · Dashboard Design**
