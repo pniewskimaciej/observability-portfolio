@@ -149,7 +149,7 @@ I also use AI agents for:
 ## Technologies
 
 **Observability:**
-Splunk · Elasticsearch · Kibana · Datadog · Grafana
+Splunk · Elasticsearch · Kibana · Datadog · Grafana · Netscout Platforms
 
 **Telecom:**
 2G · 3G · 4G/LTE · EPC · IMS · VoLTE · Service Assurance · Network Analytics
