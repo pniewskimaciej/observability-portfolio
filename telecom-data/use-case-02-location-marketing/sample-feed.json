@@ -1,0 +1,22 @@
+[
+{
+"timestamp": "2026-09-17T10:25:43Z",
+"msisdn": "15550000004",
+"cell_id": "CELL_EXAMPLE_001"
+},
+{
+"timestamp": "2026-09-17T10:27:16Z",
+"msisdn": "15550000005",
+"cell_id": "CELL_EXAMPLE_002"
+},
+{
+"timestamp": "2026-09-17T10:31:08Z",
+"msisdn": "15550000006",
+"cell_id": "CELL_EXAMPLE_001"
+},
+{
+"timestamp": "2026-09-17T10:34:52Z",
+"msisdn": "15550000007",
+"cell_id": "CELL_EXAMPLE_003"
+}
+]
