@@ -1,0 +1,26 @@
+[
+{
+"timestamp": "2026-09-17T10:15:32Z",
+"imsi": "001010000000001",
+"msisdn": "15550000001",
+"url": "https://competitor-example.com/plans/example-plan",
+"application": "HTTPS",
+"traffic_bytes": 184520
+},
+{
+"timestamp": "2026-09-17T10:18:07Z",
+"imsi": "001010000000002",
+"msisdn": "15550000002",
+"url": "https://competitor-example.com/plans/example-plan",
+"application": "HTTPS",
+"traffic_bytes": 92340
+},
+{
+"timestamp": "2026-09-17T10:22:41Z",
+"imsi": "001010000000003",
+"msisdn": "15550000003",
+"url": "https://competitor-example.com/plans/premium-plan",
+"application": "HTTPS",
+"traffic_bytes": 347810
+}
+]
