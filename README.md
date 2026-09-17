@@ -73,6 +73,38 @@ Examples of monitoring and observability dashboards.
 
 [View Datadog examples →](./datadog/)
 
+### NETSCOUT nGeniousONE
+
+Examples of telecom service assurance and network analytics dashboards designed and built in NETSCOUT nGeniousONE.
+
+Focus areas:
+
+* VoLTE call setup, teardown and registration KPIs
+* GTPv2 Control Plane monitoring
+* Roaming signaling analysis
+* APN-specific traffic analysis
+* User Plane media quality
+* MOS, packet loss, jitter and stream-quality KPIs
+
+[View nGeniousONE examples →](./ngeniousone/)
+
+### MicroStrategy / NETSCOUT nBA
+
+Interactive telecom analytics and reporting solutions built using MicroStrategy and NETSCOUT nBA.
+
+Focus areas:
+
+* Inbound and Outbound Roamer analysis
+* PLMN account analysis
+* Application Message KPIs
+* Success-rate analysis
+* Error analysis and response-code distribution
+* Day/hour event and error trends
+* Detailed CAP, MAP, Diameter and GTP signaling analysis
+* Subscriber-level analysis using IMSI filtering
+
+[View MicroStrategy examples →](./microstrategy/)
+
 ---
 
 ## Telecom Data & Custom Feeds
