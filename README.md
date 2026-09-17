@@ -109,19 +109,25 @@ Focus areas:
 
 ## Telecom Data & Custom Feeds
 
-One of my areas of specialization at NETSCOUT was designing and implementing custom data feeds based on data collected by NETSCOUT probes.
+I have extensive experience designing **custom data feeds based on network data collected by NETSCOUT probes**, translating customer business requirements into practical data and integration solutions.
 
-These solutions involved different technologies, data formats and integration methods, depending on customer requirements and target platforms.
+These solutions covered User Plane and signaling data, data filtering and enrichment, subscriber and location information, and integration with external platforms such as **Apache Kafka**.
 
-Typical activities included:
+### Selected Use Cases
 
-* Requirements analysis
-* Data analysis and transformation
-* Feed design
-* Data enrichment
-* Integration with customer platforms
-* Troubleshooting and validation
-* Automation using Python and Bash
+**User Plane URL Intelligence**
+A custom feed identifying subscribers accessing predefined URLs, including competitor price-plan pages, with selected records exported to the customer's external Kafka broker.
+
+[View use case →](./telecom-data/use-case-01-url-intelligence/)
+
+**Location-Based Marketing**
+A custom feed based on **S1-MME and SGs** data containing subscriber location information, exported to Kafka as an input for location-based marketing campaigns.
+
+[View use case →](./telecom-data/use-case-02-location-marketing/)
+
+Additional customer-specific data-feed use cases will be added as part of this portfolio.
+
+**Technologies:** `NETSCOUT Probes` · `Apache Kafka` · `S1-MME` · `SGs` · `User Plane` · `JSON` · `Avro` · `Python` · `Bash`
 
 ---
 
